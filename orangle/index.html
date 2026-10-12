@@ -54,9 +54,17 @@ header{position:sticky;top:0;z-index:10;background:rgba(6,26,25,.82);backdrop-fi
 .brand{display:flex;align-items:center;gap:10px;color:var(--text);text-decoration:none;font-weight:800;font-size:20px;letter-spacing:.01em}
 .brand img{width:36px;height:36px;border-radius:9px}
 .bar .grow{flex:1}
-.lang{position:relative;display:flex;align-items:center}
-.lang select{appearance:none;-webkit-appearance:none;background:var(--panel);color:var(--text);border:1px solid var(--line);border-radius:12px;font:600 15px/1 var(--font);padding:10px 34px 10px 12px;cursor:pointer}
-.lang::after{content:"";position:absolute;right:13px;top:50%;width:8px;height:8px;border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:translateY(-70%) rotate(45deg);pointer-events:none}
+.lang{position:relative}
+.lang-btn{display:flex;align-items:center;gap:10px;background:var(--panel);color:var(--text);border:1px solid var(--line);border-radius:12px;font:600 15px/1 var(--font);padding:10px 12px;cursor:pointer;min-width:150px;justify-content:space-between}
+.lang-btn:hover{border-color:#ff8a00}
+.lang-btn::after{content:"";width:8px;height:8px;border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:translateY(-2px) rotate(45deg);transition:transform .15s}
+.lang-btn[aria-expanded="true"]::after{transform:translateY(2px) rotate(-135deg)}
+.lang-list{position:absolute;right:0;top:calc(100% + 8px);margin:0;padding:6px;list-style:none;min-width:200px;background:#0b2b29;border:1px solid var(--line);border-radius:14px;box-shadow:0 18px 40px rgba(0,0,0,.55);z-index:50}
+.lang-list[hidden]{display:none}
+.lang-list li{padding:10px 12px;border-radius:9px;font-weight:600;font-size:16px;cursor:pointer;color:var(--text);outline:none}
+.lang-list li:hover,.lang-list li.active{background:rgba(255,138,0,.18)}
+.lang-list li[aria-selected="true"]{background:linear-gradient(90deg,var(--orange1),var(--orange2));color:#1f0f00}
+.lang-list li.active[aria-selected="true"]{box-shadow:0 0 0 2px #fff inset}
 .bar .badge{height:40px}
 @media (max-width:560px){.bar .badge{display:none}.brand span{display:none}}
 
@@ -141,19 +149,20 @@ footer a:hover{color:var(--orange1)}
   <div class="wrap bar">
     <a class="brand" href="./"><img src="img/icon-512.webp" alt="" width="36" height="36"><span>Orangle</span></a>
     <div class="grow"></div>
-    <label class="lang"><span class="sr" data-i="lang">Language</span>
-      <select id="langSel" aria-label="Language">
-        <option value="en">English</option>
-        <option value="fr">Français</option>
-        <option value="de">Deutsch</option>
-        <option value="it">Italiano</option>
-        <option value="es">Español (MX)</option>
-        <option value="es-ES">Español (ES)</option>
-        <option value="pt">Português (BR)</option>
-        <option value="ja">日本語</option>
-        <option value="ko">한국어</option>
-      </select>
-    </label>
+    <div class="lang">
+      <button type="button" class="lang-btn" id="langBtn" aria-haspopup="listbox" aria-expanded="false" aria-label="Language"><span id="langName">English</span></button>
+      <ul class="lang-list" id="langList" role="listbox" tabindex="-1" aria-label="Language" hidden>
+        <li role="option" id="lo-en" data-v="en" lang="en" aria-selected="false">English</li>
+        <li role="option" id="lo-fr" data-v="fr" lang="fr" aria-selected="false">Français</li>
+        <li role="option" id="lo-de" data-v="de" lang="de" aria-selected="false">Deutsch</li>
+        <li role="option" id="lo-it" data-v="it" lang="it" aria-selected="false">Italiano</li>
+        <li role="option" id="lo-es" data-v="es" lang="es" aria-selected="false">Español (MX)</li>
+        <li role="option" id="lo-es-ES" data-v="es-ES" lang="es-ES" aria-selected="false">Español (ES)</li>
+        <li role="option" id="lo-pt" data-v="pt" lang="pt" aria-selected="false">Português (BR)</li>
+        <li role="option" id="lo-ja" data-v="ja" lang="ja" aria-selected="false">日本語</li>
+        <li role="option" id="lo-ko" data-v="ko" lang="ko" aria-selected="false">한국어</li>
+      </ul>
+    </div>
     <a class="badge store" href="https://apps.apple.com/app/id6780140758"></a>
   </div>
 </header>
@@ -327,13 +336,34 @@ function apply(code){
     const b=badgeHTML(t);
     if(b){a.classList.remove("fallback");a.innerHTML=b;} else {a.classList.add("fallback");a.textContent=t.store;}
   });
-  document.getElementById("langSel").value=code;
-  document.getElementById("langSel").setAttribute("aria-label",t.lang);
+  document.querySelectorAll("#langList li").forEach(li=>li.setAttribute("aria-selected",li.dataset.v===code?"true":"false"));
+  document.getElementById("langName").textContent=document.getElementById("lo-"+code).textContent;
+  document.getElementById("langBtn").setAttribute("aria-label",t.lang+": "+document.getElementById("lo-"+code).textContent);
+  document.getElementById("langList").setAttribute("aria-label",t.lang);
 }
 let cur=pick(); apply(cur);
-document.getElementById("langSel").addEventListener("change",e=>{cur=e.target.value;apply(cur);
+function choose(v){cur=v;apply(cur);
   try{localStorage.setItem("orangle-lang",cur);}catch(_){}
-  const u=new URL(location.href);u.searchParams.set("lang",cur);history.replaceState(null,"",u);});
+  const u=new URL(location.href);u.searchParams.set("lang",cur);history.replaceState(null,"",u);}
+(function(){
+  const btn=document.getElementById("langBtn"),list=document.getElementById("langList"),items=[...list.querySelectorAll("li")];
+  let i=0;
+  function setActive(n){i=(n+items.length)%items.length;items.forEach((x,k)=>x.classList.toggle("active",k===i));list.setAttribute("aria-activedescendant",items[i].id);items[i].scrollIntoView({block:"nearest"});}
+  function open(){list.hidden=false;btn.setAttribute("aria-expanded","true");setActive(Math.max(0,items.findIndex(x=>x.dataset.v===cur)));list.focus();}
+  function close(focusBtn){list.hidden=true;btn.setAttribute("aria-expanded","false");items.forEach(x=>x.classList.remove("active"));if(focusBtn)btn.focus();}
+  btn.addEventListener("click",()=>list.hidden?open():close(true));
+  btn.addEventListener("keydown",e=>{if(["ArrowDown","ArrowUp","Enter"," "].includes(e.key)){e.preventDefault();open();}});
+  list.addEventListener("keydown",e=>{
+    if(e.key==="ArrowDown"){e.preventDefault();setActive(i+1);}
+    else if(e.key==="ArrowUp"){e.preventDefault();setActive(i-1);}
+    else if(e.key==="Home"){e.preventDefault();setActive(0);}
+    else if(e.key==="End"){e.preventDefault();setActive(items.length-1);}
+    else if(e.key==="Enter"||e.key===" "){e.preventDefault();choose(items[i].dataset.v);close(true);}
+    else if(e.key==="Escape"||e.key==="Tab"){close(e.key==="Escape");}
+  });
+  items.forEach((x,k)=>{x.addEventListener("click",()=>{choose(x.dataset.v);close(true);});x.addEventListener("mousemove",()=>setActive(k));});
+  document.addEventListener("click",e=>{if(!list.hidden&&!e.target.closest(".lang"))close(false);});
+})();
 </script>
 </body>
 </html>

@@ -232,3 +232,6 @@ vidoomy.com, 8953515, RESELLER
 xandr.com, 7353, RESELLER
 zetaglobal.net, 525, RESELLER
 zmaticoo.com, 5135195, RESELLER
+
+# Google AdMob
+google.com, pub-9389500674452862, DIRECT, f08c47fec0942fa0

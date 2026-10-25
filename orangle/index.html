@@ -81,9 +81,6 @@ header{position:sticky;top:0;z-index:10;background:rgba(6,26,25,.82);backdrop-fi
 /* hero */
 .hero{position:relative;padding:56px 0 24px;overflow:hidden}
 .hero > .wrap{position:relative;z-index:1}
-/* avalanche of real game cubes behind the phone (from the 1.3 store banner) */
-.hero-bg{position:absolute;z-index:0;top:0;right:0;width:min(64vw,900px);height:min(100%,980px);background:url(img/hero-avalanche.webp) left top/cover no-repeat;opacity:.95;pointer-events:none;
-  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 38%),linear-gradient(180deg,#000 70%,transparent);mask-image:linear-gradient(90deg,transparent 0,#000 38%),linear-gradient(180deg,#000 70%,transparent);-webkit-mask-composite:source-in;mask-composite:intersect}
 /* magic powder bursting from behind the logo */
 .logo-wrap{position:relative;display:block;width:min(520px,100%);margin:0 0 8px -8px}
 .logo-wrap .logo{position:relative;z-index:1;margin:0}
@@ -102,8 +99,7 @@ header{position:sticky;top:0;z-index:10;background:rgba(6,26,25,.82);backdrop-fi
   .hero{padding-top:32px;text-align:center}
   .hero .grid{grid-template-columns:1fr;gap:36px}
   .hero .logo,.logo-wrap{margin-inline:auto}
-  .hero-bg{width:100%;height:62%;opacity:.38;background-position:center top;-webkit-mask-image:linear-gradient(180deg,#000 40%,transparent);mask-image:linear-gradient(180deg,#000 40%,transparent)}
-  .hero .lead{margin-inline:auto}
+    .hero .lead{margin-inline:auto}
   .ctas{justify-content:center}
 }
 
@@ -129,7 +125,7 @@ header{position:sticky;top:0;z-index:10;background:rgba(6,26,25,.82);backdrop-fi
 .feat:nth-of-type(even) .shot{order:-1}
 .feat p{color:var(--muted);font-size:clamp(17px,1.5vw,20px);margin:0;max-width:30em}
 .shot{justify-self:center;width:min(300px,72vw);border-radius:38px;padding:9px;background:linear-gradient(160deg,#245650,#0b2725);box-shadow:0 30px 70px -20px rgba(0,0,0,.7)}
-.shot img{border-radius:30px;width:100%;height:auto;aspect-ratio:1170/2300;object-fit:cover;object-position:top}
+.shot img{border-radius:30px;width:100%;height:auto;aspect-ratio:1206/2622;object-fit:cover;object-position:top}
 @media (max-width:860px){
   .feat{grid-template-columns:1fr;gap:28px;text-align:center;padding:44px 0}
   .feat:nth-of-type(even) .shot{order:0}
@@ -179,7 +175,6 @@ footer a:hover{color:var(--orange1)}
 
 <main>
   <section class="hero">
-    <div class="hero-bg" aria-hidden="true"></div>
     <div class="wrap grid">
       <div data-speed="0.06">
         <div class="logo-wrap"><canvas class="dust" id="dust" aria-hidden="true"></canvas><img class="logo" src="img/logo-1200.webp" srcset="img/logo-640.webp 640w, img/logo-1200.webp 1200w" sizes="(max-width:600px) 90vw, 520px" alt="Orangle" width="1200" height="953"></div>
@@ -424,20 +419,20 @@ function choose(v){cur=v;apply(cur);
   function size(){var r=c.getBoundingClientRect();dpr=Math.min(window.devicePixelRatio||1,2);W=c.width=Math.round(r.width*dpr);H=c.height=Math.round(r.height*dpr);}
   function spawn(){
     var a=Math.random()*Math.PI*2; if(Math.sin(a)>0.35&&Math.random()<0.7)a=-a;   /* fewer downwards */
-    var s=W/520, sp=(70+Math.random()*170)*s;
+    var s=W/520, sp=(16+Math.random()*44)*s;
     P.push({x:W*0.5+Math.cos(a)*W*0.12,y:H*0.47+Math.sin(a)*H*0.10,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp*0.85-6*s,
-      t:0,life:1.4+Math.random()*1.6,r:(1.0+Math.random()*1.8)*s*(Math.random()<0.1?1.8:1),c:COL[(Math.random()*COL.length)|0],tw:Math.random()*6});
+      t:0,life:3.5+Math.random()*3,r:(1.0+Math.random()*1.8)*s*(Math.random()<0.1?1.8:1),c:COL[(Math.random()*COL.length)|0],tw:Math.random()*6});
   }
   function step(dt){
-    acc+=dt*70; while(acc>1){acc--; if(P.length<200)spawn();}
-    for(var i=P.length-1;i>=0;i--){var p=P[i];p.t+=dt;p.x+=p.vx*dt;p.y+=p.vy*dt;p.vx*=1-0.6*dt;p.vy*=1-0.6*dt;p.vy-=10*dt*(W/520);if(p.t>p.life)P.splice(i,1);}
+    acc+=dt*28; while(acc>1){acc--; if(P.length<170)spawn();}
+    for(var i=P.length-1;i>=0;i--){var p=P[i];p.t+=dt;p.x+=p.vx*dt;p.y+=p.vy*dt;p.vx*=1-0.15*dt;p.vy*=1-0.15*dt;p.vy-=2.5*dt*(W/520);if(p.t>p.life)P.splice(i,1);}
   }
   function draw(){
     x.clearRect(0,0,W,H);x.globalCompositeOperation="lighter";
-    for(var i=0;i<P.length;i++){var p=P[i],k=p.t/p.life,a=(k<0.15?k/0.15:1-(k-0.15)/0.85)*(0.75+0.25*Math.sin(p.tw+p.t*9));
+    for(var i=0;i<P.length;i++){var p=P[i],k=p.t/p.life,a=(k<0.15?k/0.15:1-(k-0.15)/0.85)*(0.75+0.25*Math.sin(p.tw+p.t*2.5));
       var ef=Math.min(1,p.x/(W*0.14),(W-p.x)/(W*0.14),p.y/(H*0.14),(H-p.y)/(H*0.14));a*=Math.max(0,ef);
       if(a<=0)continue;var col=p.c[0]+","+p.c[1]+","+p.c[2];
-      var sp=Math.hypot(p.vx,p.vy)||1,lx=p.vx/sp,ly=p.vy/sp,L=sp*0.16;            /* short streak back to the centre */
+      var sp=Math.hypot(p.vx,p.vy)||1,lx=p.vx/sp,ly=p.vy/sp,L=sp*0.3;            /* short streak back to the centre */
       var g=x.createLinearGradient(p.x,p.y,p.x-lx*L,p.y-ly*L);g.addColorStop(0,"rgba("+col+","+(a*0.6)+")");g.addColorStop(1,"rgba("+col+",0)");
       x.strokeStyle=g;x.lineWidth=p.r*0.8;x.beginPath();x.moveTo(p.x,p.y);x.lineTo(p.x-lx*L,p.y-ly*L);x.stroke();
       var h=x.createRadialGradient(p.x,p.y,0,p.x,p.y,p.r*3);h.addColorStop(0,"rgba(255,255,255,"+a+")");h.addColorStop(0.25,"rgba("+col+","+(a*0.9)+")");h.addColorStop(1,"rgba("+col+",0)");
@@ -446,7 +441,7 @@ function choose(v){cur=v;apply(cur);
   }
   function frame(ts){if(!run)return;var dt=Math.min(0.05,(ts-last)/1000||0.016);last=ts;step(dt);draw();requestAnimationFrame(frame);}
   size();window.addEventListener("resize",size);
-  for(var i=0;i<120;i++)step(1/30);              /* start already sparkling */
+  for(var i=0;i<240;i++)step(1/30);              /* start already sparkling */
   if(still){draw();return;}
   document.addEventListener("visibilitychange",function(){run=!document.hidden;if(run){last=performance.now();requestAnimationFrame(frame);}});
   requestAnimationFrame(function(t){last=t;frame(t);});

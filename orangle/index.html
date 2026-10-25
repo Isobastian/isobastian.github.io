@@ -151,6 +151,7 @@ footer a:hover{color:var(--orange1)}
 </style>
 </head>
 <body>
+<canvas id="bgdust" aria-hidden="true" style="position:fixed;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none"></canvas>
 <header>
   <div class="wrap bar">
     <a class="brand" href="./"><img src="img/icon-512.webp" alt="" width="36" height="36"><span>Orangle</span></a>
@@ -202,27 +203,27 @@ footer a:hover{color:var(--orange1)}
     <section class="feat">
       <div data-speed="0.06"><h2 class="sticker" data-t="f1t"><span class="o" data-t="2048"><b>2048</b></span><span class="w" data-t="IN 3D!"><b>IN 3D!</b></span></h2>
       <p data-i="f1">Tap a column to drop the next cube. Line up matching numbers and watch them merge into bigger and bigger values, on a 4×4×4 grid you can spin and view from any angle.</p></div>
-      <div class="shot" data-speed="0.2"><img src="img/shot-2048.webp" alt="" loading="lazy" width="640" height="1258"></div>
+      <div class="shot" data-speed="0.2"><img src="img/shot1.webp" alt="" loading="lazy" width="640" height="1258"></div>
     </section>
     <section class="feat">
       <div data-speed="0.06"><h2 class="sticker" data-t="f3t"><span class="o" data-t="CRYSTAL"><b>CRYSTAL</b></span><span class="w" data-t="POWER!"><b>POWER!</b></span></h2>
       <p data-i="f3">Drag an Emerald Crystal onto a cube: every cube with that number turns to crystal and shatters in a flash of lightning and magic dust.</p></div>
-      <div class="shot" data-speed="0.2"><img src="img/shot-crystal.webp" alt="" loading="lazy" width="640" height="1258"></div>
+      <div class="shot" data-speed="0.2"><img src="img/shot2.webp" alt="" loading="lazy" width="640" height="1258"></div>
     </section>
     <section class="feat">
       <div data-speed="0.06"><h2 class="sticker" data-t="f4t"><span class="o" data-t="REACH"><b>REACH</b></span><span class="w" data-t="LEGEND"><b>LEGEND</b></span></h2>
       <p data-i="f4">Chase your best score, climb from 2 to the millions and see how high you can go.</p></div>
-      <div class="shot" data-speed="0.2"><img src="img/shot-legend.webp" alt="" loading="lazy" width="640" height="1258"></div>
+      <div class="shot" data-speed="0.2"><img src="img/shot3.webp" alt="" loading="lazy" width="640" height="1258"></div>
     </section>
     <section class="feat">
       <div data-speed="0.06"><h2 class="sticker" data-t="f2t"><span class="o" data-t="CHAIN"><b>CHAIN</b></span><span class="w" data-t="COMBOS"><b>COMBOS</b></span></h2>
       <p data-i="f2">Special cubes, chain reactions and satisfying combos. One good drop can set off a whole cascade.</p></div>
-      <div class="shot" data-speed="0.2"><img src="img/shot-chain.webp" alt="" loading="lazy" width="640" height="1258"></div>
+      <div class="shot" data-speed="0.2"><img src="img/shot4.webp" alt="" loading="lazy" width="640" height="1258"></div>
     </section>
     <section class="feat">
       <div data-speed="0.06"><h2 class="sticker" data-t="f5t"><span class="o" data-t="DEEP"><b>DEEP</b></span><span class="w" data-t="STRATEGY"><b>STRATEGY</b></span></h2>
       <p data-i="f5">A board that adapts to how you play keeps every run fresh. Simple to start, deep to master.</p></div>
-      <div class="shot" data-speed="0.2"><img src="img/shot-strategy.webp" alt="" loading="lazy" width="640" height="1258"></div>
+      <div class="shot" data-speed="0.2"><img src="img/shot5.webp" alt="" loading="lazy" width="640" height="1258"></div>
     </section>
 
     <section class="android" aria-labelledby="andT">
@@ -443,6 +444,31 @@ function choose(v){cur=v;apply(cur);
   size();window.addEventListener("resize",size);
   for(var i=0;i<240;i++)step(1/30);              /* start already sparkling */
   if(still){draw();return;}
+  document.addEventListener("visibilitychange",function(){run=!document.hidden;if(run){last=performance.now();requestAnimationFrame(frame);}});
+  requestAnimationFrame(function(t){last=t;frame(t);});
+})();
+</script>
+<script>
+/* Background magic powder: a few slow sparkles floating over the whole page. */
+(function(){
+  var c=document.getElementById("bgdust");if(!c||!c.getContext)return;
+  var x=c.getContext("2d"),P=[],W=0,H=0,dpr=1,last=0,run=true;
+  var still=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var COL=[[5,219,120],[5,219,120],[255,255,255],[255,210,90]];
+  function mk(y){var s=dpr;return {x:Math.random()*W,y:y==null?Math.random()*H:y,vx:(Math.random()-.5)*6*s,vy:-(4+Math.random()*10)*s,
+    r:(0.8+Math.random()*1.6)*s,c:COL[(Math.random()*COL.length)|0],tw:Math.random()*6,sp:0.6+Math.random()*1.2,a:0.25+Math.random()*0.45};}
+  function size(){dpr=Math.min(window.devicePixelRatio||1,2);W=c.width=Math.round(innerWidth*dpr);H=c.height=Math.round(innerHeight*dpr);
+    var n=Math.min(55,Math.max(18,Math.round(innerWidth*innerHeight/26000)));P=[];for(var i=0;i<n;i++)P.push(mk());}
+  function draw(t){x.clearRect(0,0,W,H);x.globalCompositeOperation="lighter";
+    for(var i=0;i<P.length;i++){var p=P[i],a=p.a*(0.55+0.45*Math.sin(p.tw+t*p.sp));if(a<=0)continue;var col=p.c.join(",");
+      var g=x.createRadialGradient(p.x,p.y,0,p.x,p.y,p.r*4);g.addColorStop(0,"rgba(255,255,255,"+a+")");g.addColorStop(0.3,"rgba("+col+","+(a*0.7)+")");g.addColorStop(1,"rgba("+col+",0)");
+      x.fillStyle=g;x.beginPath();x.arc(p.x,p.y,p.r*4,0,6.283);x.fill();}
+    x.globalCompositeOperation="source-over";}
+  function frame(ts){if(!run)return;var dt=Math.min(0.05,(ts-last)/1000||0.016);last=ts;
+    for(var i=0;i<P.length;i++){var p=P[i];p.x+=p.vx*dt;p.y+=p.vy*dt;if(p.y<-20||p.x<-20||p.x>W+20){P[i]=mk(H+10);}}
+    draw(ts/1000);requestAnimationFrame(frame);}
+  size();var rt;window.addEventListener("resize",function(){clearTimeout(rt);rt=setTimeout(size,200);});
+  if(still){draw(0);return;}
   document.addEventListener("visibilitychange",function(){run=!document.hidden;if(run){last=performance.now();requestAnimationFrame(frame);}});
   requestAnimationFrame(function(t){last=t;frame(t);});
 })();

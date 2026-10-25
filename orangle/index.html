@@ -82,12 +82,13 @@ header{position:sticky;top:0;z-index:10;background:rgba(6,26,25,.82);backdrop-fi
 .hero{position:relative;padding:56px 0 24px;overflow:hidden}
 .hero > .wrap{position:relative;z-index:1}
 /* magic powder bursting from behind the logo */
-.logo-wrap{position:relative;display:block;width:min(520px,100%);margin:0 0 8px -8px}
+.logo-wrap{position:relative;display:block;width:min(520px,100%);margin:0 0 calc(min(520px,100%) * -0.14) -8px}
+.logo-wrap .logo{display:block}
 .logo-wrap .logo{position:relative;z-index:1;margin:0}
 .dust{position:absolute;z-index:0;left:-22%;top:-30%;width:144%;height:160%;pointer-events:none}
 .hero .grid{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
 .hero .logo{width:min(520px,100%);margin:0 0 8px -8px;filter:drop-shadow(0 10px 30px rgba(255,120,0,.18))}
-.hero h1{font-size:clamp(26px,3.6vw,40px);line-height:1.2;font-weight:800;margin:0 0 12px}
+.hero h1{position:relative;z-index:2;font-size:clamp(26px,3.6vw,40px);line-height:1.2;font-weight:800;margin:0 0 12px}
 .hero .lead{color:var(--muted);font-size:clamp(17px,1.6vw,20px);margin:0 0 26px;max-width:34em}
 .free{display:inline-flex;align-items:center;gap:8px;font-weight:600;color:var(--green);margin:0 0 18px;font-size:16px}
 .free img{width:22px;height:22px}

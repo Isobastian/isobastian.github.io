@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Orangle: 2048 Cube Puzzle Game — 2048 in 3D for iPhone &amp; iPad</title>
-<meta name="description" content="Orangle is a free 3D merge puzzle for iPhone and iPad. Drop, match and merge number cubes across a 4×4×4 grid. Easy to start, hard to put down. Android coming soon.">
+<title>Orangle: 2048 Cube Puzzle Game — 2048 in 3D for iPhone, iPad &amp; Android</title>
+<meta name="description" content="Orangle is a free 3D merge puzzle for iPhone, iPad and Android. Drop, match and merge number cubes across a 4×4×4 grid. Easy to start, hard to put down.">
 <meta name="theme-color" content="#071f1e">
 <meta name="color-scheme" content="dark">
 <meta name="apple-itunes-app" content="app-id=6780140758">
@@ -14,7 +14,7 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Orangle">
 <meta property="og:title" content="Orangle: 2048 Cube Puzzle Game — 2048 in 3D">
-<meta property="og:description" content="Drop, match and merge number cubes across a 4×4×4 grid. Free on iPhone and iPad. Android coming soon.">
+<meta property="og:description" content="Drop, match and merge number cubes across a 4×4×4 grid. Free on iPhone, iPad and Android.">
 <meta property="og:url" content="https://isobastian.github.io/orangle/">
 <meta property="og:image" content="https://isobastian.github.io/orangle/og.jpg">
 <meta property="og:image:width" content="1200">
@@ -22,7 +22,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preload" href="fonts/poppins-latin-900-normal.woff2" as="font" type="font/woff2" crossorigin>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"MobileApplication","name":"Orangle: 2048 Cube Puzzle Game","operatingSystem":"iOS","applicationCategory":"GameApplication","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"downloadUrl":"https://apps.apple.com/app/id6780140758","author":{"@type":"Person","name":"Sebastian Nicosia"},"image":"https://isobastian.github.io/orangle/img/icon-512.webp"}
+{"@context":"https://schema.org","@type":"MobileApplication","name":"Orangle: 2048 Cube Puzzle Game","operatingSystem":"iOS, Android","applicationCategory":"GameApplication","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"downloadUrl":"https://apps.apple.com/app/id6780140758","author":{"@type":"Person","name":"Sebastian Nicosia"},"image":"https://isobastian.github.io/orangle/img/icon-512.webp"}
 </script>
 <style>
 @font-face{font-family:"Poppins";font-weight:600;font-display:swap;src:url(fonts/poppins-latin-600-normal.woff2) format("woff2")}
@@ -72,6 +72,9 @@ header{position:sticky;top:0;z-index:10;background:rgba(6,26,25,.82);backdrop-fi
 .badge{display:inline-block;line-height:0;border-radius:9px;transition:transform .15s}
 .badge:hover{transform:translateY(-2px)}
 .badge img{height:100%;width:auto}
+.badge.gplay{overflow:hidden;position:relative}
+.badge.gplay img{height:auto;max-width:none;position:absolute;left:0;top:0}
+.bar .badge.gplay{margin-left:10px}
 .badge.fallback{height:auto;line-height:1.2;background:#000;color:#fff;text-decoration:none;border:1px solid #a6a6a6;border-radius:10px;padding:8px 16px;font:600 15px var(--font)}
 .soon{display:inline-flex;align-items:center;gap:10px;height:56px;padding:0 18px;border-radius:12px;border:1.5px dashed #3c6d67;color:var(--muted);font-weight:600;font-size:16px;white-space:nowrap}
 .soon svg{flex:none}
@@ -172,6 +175,7 @@ footer a:hover{color:var(--orange1)}
       </ul>
     </div>
     <a class="badge store" href="https://apps.apple.com/app/id6780140758"></a>
+    <a class="badge gplay" data-h="40" href="https://play.google.com/store/apps/details?id=com.sebastiannicosia.orangle"></a>
   </div>
 </header>
 
@@ -182,10 +186,10 @@ footer a:hover{color:var(--orange1)}
         <div class="logo-wrap"><canvas class="dust" id="dust" aria-hidden="true"></canvas><img class="logo" src="img/logo-1200.webp" srcset="img/logo-640.webp 640w, img/logo-1200.webp 1200w" sizes="(max-width:600px) 90vw, 520px" alt="Orangle" width="1200" height="953"></div>
         <h1 data-i="tag">2048 in 3D. Easy to start, hard to put down.</h1>
         <p class="lead" data-i="lead">Drop, match and merge number cubes across a 4×4×4 grid. How high can you stack?</p>
-        <p class="free"><img src="img/crystal.webp" alt="" width="22" height="22"><span data-i="free">Free on iPhone &amp; iPad</span></p>
+        <p class="free"><img src="img/crystal.webp" alt="" width="22" height="22"><span data-i="free">Free on iPhone, iPad &amp; Android</span></p>
         <div class="ctas">
           <a class="badge store" href="https://apps.apple.com/app/id6780140758"></a>
-          <span class="soon"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M17.6 9.5l1.8-3.1a.4.4 0 0 0-.7-.4l-1.8 3.2A11 11 0 0 0 12 8.2c-1.8 0-3.4.4-4.9 1L5.3 6a.4.4 0 1 0-.7.4l1.8 3.1A10.4 10.4 0 0 0 1 18h22a10.4 10.4 0 0 0-5.4-8.5zM7 15.3a1 1 0 1 1 0-2 1 1 0 0 1 0 2zm10 0a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/></svg><span data-i="android">Android — coming soon</span></span>
+          <a class="badge gplay" data-h="56" href="https://play.google.com/store/apps/details?id=com.sebastiannicosia.orangle"></a>
         </div>
       </div>
       <div class="phone" data-speed="0.18"><video id="heroVideo" poster="video/poster-en.webp" width="540" height="1170" autoplay muted loop playsinline preload="auto" aria-label="Orangle gameplay video: number cubes dropping and merging on a 4×4×4 grid"><source src="video/orangle-en.mp4" type="video/mp4"></video></div>
@@ -229,9 +233,9 @@ footer a:hover{color:var(--orange1)}
 
     <section class="android" aria-labelledby="andT">
       <svg class="bot" viewBox="0 0 24 24" aria-hidden="true"><path fill="#1fe39a" d="M17.6 9.5l1.8-3.1a.4.4 0 0 0-.7-.4l-1.8 3.2A11 11 0 0 0 12 8.2c-1.8 0-3.4.4-4.9 1L5.3 6a.4.4 0 1 0-.7.4l1.8 3.1A10.4 10.4 0 0 0 1 18h22a10.4 10.4 0 0 0-5.4-8.5zM7 15.3a1 1 0 1 1 0-2 1 1 0 0 1 0 2zm10 0a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/></svg>
-      <div><h2 id="andT" data-i="andT">Coming soon to Android</h2>
-      <p data-i="andP">Orangle is on its way to Google Play. Until then, you can play it on iPhone and iPad.</p></div>
-      <a class="badge store" href="https://apps.apple.com/app/id6780140758" style="height:56px"></a>
+      <div><h2 id="andT" data-i="andT">Now on Android</h2>
+      <p data-i="andP">Orangle is now on Google Play. Download it free on your Android phone or tablet.</p></div>
+      <a class="badge gplay" data-h="56" href="https://play.google.com/store/apps/details?id=com.sebastiannicosia.orangle"></a>
     </section>
   </div>
 </main>
@@ -249,72 +253,72 @@ footer a:hover{color:var(--orange1)}
 
 <script>
 const T={
-en:{tag:"2048 in 3D. Easy to start, hard to put down.",lead:"Drop, match and merge number cubes across a 4×4×4 grid. How high can you stack?",free:"Free on iPhone & iPad",android:"Android — coming soon",
+en:{tag:"2048 in 3D. Easy to start, hard to put down.",lead:"Drop, match and merge number cubes across a 4×4×4 grid. How high can you stack?",free:"Free on iPhone, iPad & Android",android:"Android — coming soon",
 f1t:["2048", "IN 3D!"],f1:"Tap a column to drop the next cube. Line up matching numbers and watch them merge into bigger and bigger values, on a 4×4×4 grid you can spin and view from any angle.",
 f2t:["CHAIN", "COMBOS"],f2:"Special cubes, chain reactions and satisfying combos. One good drop can set off a whole cascade.",
 f3t:["CRYSTAL", "POWER!"],f3:"Drag an Emerald Crystal onto a cube: every cube with that number turns to crystal and shatters in a flash of lightning and magic dust.",
 f4t:["REACH", "LEGEND"],f4:"Chase your best score, climb from 2 to the millions and see how high you can go.",
 f5t:["DEEP", "STRATEGY"],f5:"A board that adapts to how you play keeps every run fresh. Simple to start, deep to master.",
-hl:["Plays offline","No account needed","8 languages","Free crystals"],andT:"Coming soon to Android",andP:"Orangle is on its way to Google Play. Until then, you can play it on iPhone and iPad.",
-support:"Support",privacy:"Privacy policy",made:"Made in Geneva by Sebastian Nicosia",lang:"Language",store:"Download on the App Store",badge:"en-us"},
-fr:{tag:"2048 en 3D. Facile à prendre en main, dur à lâcher.",lead:"Lâchez, associez et fusionnez des cubes de chiffres dans une grille 4×4×4. Jusqu'où irez-vous ?",free:"Gratuit sur iPhone et iPad",android:"Android : bientôt disponible",
+hl:["Plays offline","No account needed","8 languages","Free crystals"],andT:"Now on Android",andP:"Orangle is now on Google Play. Download it free on your Android phone or tablet.",
+support:"Support",privacy:"Privacy policy",made:"Made in Geneva by Sebastian Nicosia",lang:"Language",store:"Download on the App Store",badge:"en-us",gp:"Get it on Google Play",gpl:"en"},
+fr:{tag:"2048 en 3D. Facile à prendre en main, dur à lâcher.",lead:"Lâchez, associez et fusionnez des cubes de chiffres dans une grille 4×4×4. Jusqu'où irez-vous ?",free:"Gratuit sur iPhone, iPad et Android",android:"Android : bientôt disponible",
 f1t:["2048", "EN 3D !"],f1:"Touchez une colonne pour lâcher le cube suivant. Alignez les chiffres identiques et regardez-les fusionner en valeurs toujours plus grandes, dans une grille 4×4×4 à faire pivoter sous tous les angles.",
 f2t:["COMBOS", "EN CHAÎNE"],f2:"Cubes spéciaux, réactions en chaîne et combos satisfaisants. Un bon lâcher peut déclencher toute une cascade.",
 f3t:["CRISTAL", "PUISSANT !"],f3:"Glissez un Cristal d'émeraude sur un cube : tous les cubes du même nombre se changent en cristal et volent en éclats dans un éclair de poussière magique.",
 f4t:["DEVENEZ", "LÉGENDE"],f4:"Battez votre meilleur score, passez de 2 à des millions et voyez jusqu'où vous pouvez monter.",
 f5t:["STRATÉGIE", "PROFONDE"],f5:"Un plateau qui s'adapte à votre façon de jouer, pour des parties toujours différentes. Simple à apprendre, riche à maîtriser.",
-hl:["Jouable hors ligne","Sans compte","8 langues","Cristaux gratuits"],andT:"Bientôt sur Android",andP:"Orangle arrive bientôt sur Google Play. En attendant, jouez-y sur iPhone et iPad.",
-support:"Assistance",privacy:"Confidentialité",made:"Créé à Genève par Sebastian Nicosia",lang:"Langue",store:"Télécharger dans l'App Store",badge:"fr-fr"},
-de:{tag:"2048 in 3D. Schnell gelernt, schwer wegzulegen.",lead:"Lass Zahlenwürfel fallen, kombiniere und verschmelze sie in einem 4×4×4-Raster. Wie hoch kommst du?",free:"Gratis für iPhone und iPad",android:"Android: bald verfügbar",
+hl:["Jouable hors ligne","Sans compte","8 langues","Cristaux gratuits"],andT:"Disponible sur Android",andP:"Orangle est maintenant sur Google Play. Téléchargez-le gratuitement sur votre téléphone ou tablette Android.",
+support:"Assistance",privacy:"Confidentialité",made:"Créé à Genève par Sebastian Nicosia",lang:"Langue",store:"Télécharger dans l'App Store",badge:"fr-fr",gp:"Disponible sur Google Play",gpl:"fr"},
+de:{tag:"2048 in 3D. Schnell gelernt, schwer wegzulegen.",lead:"Lass Zahlenwürfel fallen, kombiniere und verschmelze sie in einem 4×4×4-Raster. Wie hoch kommst du?",free:"Gratis für iPhone, iPad und Android",android:"Android: bald verfügbar",
 f1t:["2048", "IN 3D!"],f1:"Tippe auf eine Spalte, um den nächsten Würfel fallen zu lassen. Bring gleiche Zahlen zusammen und sieh zu, wie sie zu immer größeren Werten verschmelzen, in einem 4×4×4-Raster, das du aus jedem Winkel ansehen kannst.",
 f2t:["KETTEN-", "COMBOS"],f2:"Spezialwürfel, Kettenreaktionen und starke Combos. Ein guter Wurf kann eine ganze Kaskade auslösen.",
 f3t:["KRISTALL", "POWER!"],f3:"Zieh einen Smaragd-Kristall auf einen Würfel: Alle Würfel mit dieser Zahl werden zu Kristall und zerspringen in Blitzen und Zauberstaub.",
 f4t:["WERDE", "LEGENDE"],f4:"Jage deinen Highscore, steig von 2 bis in die Millionen und finde heraus, wie hoch du kommst.",
 f5t:["TIEFE", "STRATEGIE"],f5:"Ein Spielfeld, das sich deinem Spielstil anpasst, macht jede Runde anders. Leicht zu lernen, schwer zu meistern.",
-hl:["Offline spielbar","Kein Konto nötig","8 Sprachen","Gratis-Kristalle"],andT:"Bald auch für Android",andP:"Orangle kommt bald zu Google Play. Bis dahin kannst du es auf iPhone und iPad spielen.",
-support:"Support",privacy:"Datenschutz",made:"Entwickelt in Genf von Sebastian Nicosia",lang:"Sprache",store:"Laden im App Store",badge:"de-de"},
-it:{tag:"2048 in 3D. Facile da imparare, difficile da mollare.",lead:"Fai cadere, abbina e fondi cubi numerati in una griglia 4×4×4. Fin dove arriverai?",free:"Gratis su iPhone e iPad",android:"Android: in arrivo",
+hl:["Offline spielbar","Kein Konto nötig","8 Sprachen","Gratis-Kristalle"],andT:"Jetzt für Android",andP:"Orangle ist jetzt bei Google Play. Lade es kostenlos auf dein Android-Smartphone oder -Tablet.",
+support:"Support",privacy:"Datenschutz",made:"Entwickelt in Genf von Sebastian Nicosia",lang:"Sprache",store:"Laden im App Store",badge:"de-de",gp:"Jetzt bei Google Play",gpl:"de"},
+it:{tag:"2048 in 3D. Facile da imparare, difficile da mollare.",lead:"Fai cadere, abbina e fondi cubi numerati in una griglia 4×4×4. Fin dove arriverai?",free:"Gratis su iPhone, iPad e Android",android:"Android: in arrivo",
 f1t:["2048", "IN 3D!"],f1:"Tocca una colonna per far cadere il cubo successivo. Abbina i numeri uguali e guardali fondersi in valori sempre più alti, in una griglia 4×4×4 da ruotare e osservare da ogni angolazione.",
 f2t:["COMBO", "A CATENA"],f2:"Cubi speciali, reazioni a catena e combo soddisfacenti. Una buona mossa può scatenare un'intera cascata.",
 f3t:["SUPER", "CRISTALLI!"],f3:"Trascina un Cristallo di smeraldo su un cubo: tutti i cubi con quel numero diventano cristallo e vanno in frantumi tra fulmini e polvere magica.",
 f4t:["DIVENTA", "LEGGENDA"],f4:"Insegui il tuo record, passa da 2 a milioni e scopri fin dove riesci ad arrivare.",
 f5t:["STRATEGIA", "PROFONDA"],f5:"Un campo di gioco che si adatta al tuo stile, per partite sempre nuove. Facile da iniziare, difficile da padroneggiare.",
-hl:["Si gioca offline","Senza account","8 lingue","Cristalli gratis"],andT:"Presto su Android",andP:"Orangle sta arrivando su Google Play. Nel frattempo puoi giocarci su iPhone e iPad.",
-support:"Assistenza",privacy:"Privacy",made:"Creato a Ginevra da Sebastian Nicosia",lang:"Lingua",store:"Scarica su App Store",badge:"it-it"},
-es:{tag:"2048 en 3D. Fácil de aprender, difícil de soltar.",lead:"Suelta, junta y fusiona cubos de números en una cuadrícula de 4×4×4. ¿Qué tan alto llegarás?",free:"Gratis en iPhone y iPad",android:"Android: muy pronto",
+hl:["Si gioca offline","Senza account","8 lingue","Cristalli gratis"],andT:"Ora su Android",andP:"Orangle è ora su Google Play. Scaricalo gratis sul tuo telefono o tablet Android.",
+support:"Assistenza",privacy:"Privacy",made:"Creato a Ginevra da Sebastian Nicosia",lang:"Lingua",store:"Scarica su App Store",badge:"it-it",gp:"Disponibile su Google Play",gpl:"it"},
+es:{tag:"2048 en 3D. Fácil de aprender, difícil de soltar.",lead:"Suelta, junta y fusiona cubos de números en una cuadrícula de 4×4×4. ¿Qué tan alto llegarás?",free:"Gratis en iPhone, iPad y Android",android:"Android: muy pronto",
 f1t:["2048", "EN 3D!"],f1:"Toca una columna para soltar el siguiente cubo. Junta números iguales y mira cómo se fusionan en valores cada vez más altos, en una cuadrícula de 4×4×4 que puedes girar y ver desde cualquier ángulo.",
 f2t:["COMBOS", "EN CADENA"],f2:"Cubos especiales, reacciones en cadena y combos muy satisfactorios. Un buen movimiento puede desatar toda una cascada.",
 f3t:["¡CRISTAL", "PODEROSO!"],f3:"Arrastra un Cristal de esmeralda sobre un cubo: todos los cubos con ese número se vuelven cristal y estallan entre rayos y polvo mágico.",
 f4t:["SÉ UNA", "LEYENDA"],f4:"Rompe tu récord, pasa de 2 a millones y descubre qué tan alto puedes llegar.",
 f5t:["ESTRATEGIA", "PROFUNDA"],f5:"Un tablero que se adapta a tu forma de jugar para que cada partida sea distinta. Fácil de empezar, difícil de dominar.",
-hl:["Juega sin internet","Sin crear cuenta","8 idiomas","Cristales gratis"],andT:"Muy pronto en Android",andP:"Orangle llegará pronto a Google Play. Mientras tanto, puedes jugarlo en iPhone y iPad.",
-support:"Soporte",privacy:"Privacidad",made:"Hecho en Ginebra por Sebastian Nicosia",lang:"Idioma",store:"Descárgalo en el App Store",badge:"es-mx"},
+hl:["Juega sin internet","Sin crear cuenta","8 idiomas","Cristales gratis"],andT:"Ya en Android",andP:"Orangle ya está en Google Play. Descárgalo gratis en tu teléfono o tablet Android.",
+support:"Soporte",privacy:"Privacidad",made:"Hecho en Ginebra por Sebastian Nicosia",lang:"Idioma",store:"Descárgalo en el App Store",badge:"es-mx",gp:"Disponible en Google Play",gpl:"es"},
 "es-ES":{lead:"Suelta, combina y fusiona cubos de números en una cuadrícula de 4×4×4. ¿Hasta dónde llegarás?",tag:"2048 en 3D. Fácil de aprender, difícil de dejar.",
 f4:"Supera tu récord, pasa de 2 a millones y descubre hasta dónde puedes llegar.",hl:["Juega sin conexión","Sin necesidad de cuenta","8 idiomas","Cristales gratis"],badge:"es-es"},
-pt:{tag:"2048 em 3D. Fácil de aprender, difícil de largar.",lead:"Solte, combine e funda cubos de números em uma grade 4×4×4. Até onde você consegue chegar?",free:"Grátis no iPhone e iPad",android:"Android: em breve",
+pt:{tag:"2048 em 3D. Fácil de aprender, difícil de largar.",lead:"Solte, combine e funda cubos de números em uma grade 4×4×4. Até onde você consegue chegar?",free:"Grátis no iPhone, iPad e Android",android:"Android: em breve",
 f1t:["2048", "EM 3D!"],f1:"Toque em uma coluna para soltar o próximo cubo. Junte números iguais e veja eles se fundirem em valores cada vez maiores, em uma grade 4×4×4 para girar e ver de qualquer ângulo.",
 f2t:["COMBOS", "EM CADEIA"],f2:"Cubos especiais, reações em cadeia e combos satisfatórios. Uma boa jogada pode disparar uma cascata inteira.",
 f3t:["CRISTAL", "PODEROSO!"],f3:"Arraste um Cristal de esmeralda sobre um cubo: todos os cubos com esse número viram cristal e se estilhaçam entre raios e pó mágico.",
 f4t:["SEJA", "LENDA"],f4:"Bata seu recorde, vá de 2 a milhões e descubra até onde você consegue chegar.",
 f5t:["ESTRATÉGIA", "PROFUNDA"],f5:"Um tabuleiro que se adapta ao seu jeito de jogar, para cada partida ser diferente. Fácil de começar, difícil de dominar.",
-hl:["Jogue offline","Sem precisar de conta","8 idiomas","Cristais grátis"],andT:"Em breve no Android",andP:"Orangle está chegando ao Google Play. Enquanto isso, jogue no iPhone e iPad.",
-support:"Suporte",privacy:"Privacidade",made:"Feito em Genebra por Sebastian Nicosia",lang:"Idioma",store:"Baixar na App Store",badge:"pt-br"},
-ja:{tag:"3Dで遊ぶ2048。すぐに覚えられて、やめられない。",lead:"4×4×4のグリッドに数字キューブを落として、そろえて、合体！どこまで高く積めるかな？",free:"iPhone・iPadで無料",android:"Android版 近日公開",
+hl:["Jogue offline","Sem precisar de conta","8 idiomas","Cristais grátis"],andT:"Já no Android",andP:"Orangle já está no Google Play. Baixe grátis no seu celular ou tablet Android.",
+support:"Suporte",privacy:"Privacidade",made:"Feito em Genebra por Sebastian Nicosia",lang:"Idioma",store:"Baixar na App Store",badge:"pt-br",gp:"Disponível no Google Play",gpl:"pt-br"},
+ja:{tag:"3Dで遊ぶ2048。すぐに覚えられて、やめられない。",lead:"4×4×4のグリッドに数字キューブを落として、そろえて、合体！どこまで高く積めるかな？",free:"iPhone・iPad・Androidで無料",android:"Android版 近日公開",
 f1t:["2048", "が3Dに！"],f1:"列をタップして次のキューブを落とそう。同じ数字をそろえると、どんどん大きな数字に合体。4×4×4のグリッドは回転させて、好きな角度から見られます。",
 f2t:["連鎖", "コンボ"],f2:"特殊キューブ、連鎖、気持ちいいコンボ。うまく落とせば、一気に連鎖が広がります。",
 f3t:["クリスタル", "パワー！"],f3:"エメラルドクリスタルをキューブにドラッグすると、同じ数字のキューブがすべてクリスタルに変わり、稲妻と魔法の粉とともに砕け散ります。",
 f4t:["伝説を", "目指せ！"],f4:"ハイスコアを目指して、2から数百万まで。どこまで高く積めるか挑戦しよう。",
 f5t:["奥深い", "戦略"],f5:"プレイスタイルに合わせて変化する盤面で、毎回ちがう展開に。かんたんに始められて、奥が深い。",
-hl:["オフラインで遊べる","アカウント不要","8か国語に対応","無料クリスタル"],andT:"Android版も近日公開",andP:"OrangleはまもなくGoogle Playに登場します。それまではiPhone・iPadで遊べます。",
-support:"サポート",privacy:"プライバシーポリシー",made:"ジュネーブで Sebastian Nicosia が制作",lang:"言語",store:"App Storeからダウンロード",badge:"ja-jp"},
-ko:{tag:"3D로 즐기는 2048. 배우기 쉽고 멈추기 어려운 퍼즐.",lead:"4×4×4 그리드에 숫자 큐브를 떨어뜨리고 맞춰서 합치세요. 얼마나 높이 쌓을 수 있을까요?",free:"iPhone·iPad에서 무료",android:"Android 출시 예정",
+hl:["オフラインで遊べる","アカウント不要","8か国語に対応","無料クリスタル"],andT:"Android版 配信中",andP:"OrangleがGoogle Playに登場しました。Androidのスマートフォンやタブレットで無料でダウンロードできます。",
+support:"サポート",privacy:"プライバシーポリシー",made:"ジュネーブで Sebastian Nicosia が制作",lang:"言語",store:"App Storeからダウンロード",badge:"ja-jp",gp:"Google Play で手に入れよう",gpl:"ja"},
+ko:{tag:"3D로 즐기는 2048. 배우기 쉽고 멈추기 어려운 퍼즐.",lead:"4×4×4 그리드에 숫자 큐브를 떨어뜨리고 맞춰서 합치세요. 얼마나 높이 쌓을 수 있을까요?",free:"iPhone·iPad·Android에서 무료",android:"Android 출시 예정",
 f1t:["2048", "3D로!"],f1:"열을 탭해 다음 큐브를 떨어뜨리세요. 같은 숫자를 맞추면 점점 더 큰 숫자로 합쳐져요. 4×4×4 그리드는 돌려서 어느 각도에서든 볼 수 있어요.",
 f2t:["연쇄", "콤보"],f2:"특수 큐브, 연쇄 반응, 짜릿한 콤보. 한 번의 좋은 수로 연쇄가 이어집니다.",
 f3t:["크리스탈", "파워!"],f3:"에메랄드 크리스탈을 큐브 위로 끌어다 놓으면 같은 숫자의 큐브가 모두 크리스탈로 변해 번개와 마법 가루 속에 산산조각 나요.",
 f4t:["전설에", "도전!"],f4:"최고 점수에 도전하고, 2에서 수백만까지 얼마나 높이 올라갈 수 있는지 확인해 보세요.",
 f5t:["깊은", "전략"],f5:"플레이 스타일에 맞춰 변하는 보드로 매번 새로운 게임. 시작은 쉽게, 마스터는 깊게.",
-hl:["오프라인 플레이","계정 필요 없음","8개 언어 지원","무료 크리스탈"],andT:"Android 버전 출시 예정",andP:"Orangle이 곧 Google Play에 출시됩니다. 그동안 iPhone·iPad에서 즐겨 보세요.",
-support:"지원",privacy:"개인정보 처리방침",made:"제네바에서 Sebastian Nicosia 제작",lang:"언어",store:"App Store에서 다운로드",badge:"ko-kr"}
+hl:["오프라인 플레이","계정 필요 없음","8개 언어 지원","무료 크리스탈"],andT:"이제 Android에서도",andP:"Orangle이 Google Play에 출시되었습니다. Android 휴대폰이나 태블릿에서 무료로 다운로드하세요.",
+support:"지원",privacy:"개인정보 처리방침",made:"제네바에서 Sebastian Nicosia 제작",lang:"언어",store:"App Store에서 다운로드",badge:"ko-kr",gp:"Google Play에서 다운로드",gpl:"ko"}
 };
 T["es-ES"]=Object.assign({},T.es,T["es-ES"]);
 
@@ -333,6 +337,18 @@ function pick(){
 function badgeHTML(t){
   return '<img alt="'+t.store+'" src="https://toolbox.marketingtools.apple.com/api/v2/badges/download-on-the-app-store/black/'+t.badge+'" onerror="this.parentNode.classList.add(\'fallback\');this.parentNode.textContent=\''+t.store.replace(/'/g,"\\'")+'\'">';
 }
+/* Google Play badge (official images, cropped to the visible badge so it matches the App Store badge height) */
+const GP_BOX={en:[41,41,604,208]}, GP_DEF=[0,29,645,220];
+function gplayFill(a,t){
+  const h=+a.dataset.h||56, l=t.gpl||"en", b=GP_BOX[l]||GP_DEF, k=h/(b[3]-b[1]+1);
+  a.className="badge gplay"; a.setAttribute("aria-label",t.gp);
+  a.style.height=h+"px"; a.style.width=Math.round((b[2]-b[0]+1)*k)+"px"; a.textContent="";
+  const im=new Image(); im.alt=t.gp;
+  im.style.cssText="height:"+Math.round(250*k)+"px;left:"+(-b[0]*k).toFixed(1)+"px;top:"+(-b[1]*k).toFixed(1)+"px";
+  im.onerror=()=>{a.style.cssText="";a.classList.add("fallback");a.textContent=t.gp;};
+  im.src="https://play.google.com/intl/en_us/badges/static/images/badges/"+l+"_badge_web_generic.png";
+  a.appendChild(im);
+}
 function apply(code){
   const t=T[code]; document.documentElement.lang=code;
   document.querySelectorAll("[data-i]").forEach(el=>{const k=el.dataset.i;
@@ -344,6 +360,7 @@ function apply(code){
     const b=badgeHTML(t);
     if(b){a.classList.remove("fallback");a.innerHTML=b;} else {a.classList.add("fallback");a.textContent=t.store;}
   });
+  document.querySelectorAll("a.gplay").forEach(a=>gplayFill(a,t));
   document.querySelectorAll("#langList li").forEach(li=>li.setAttribute("aria-selected",li.dataset.v===code?"true":"false"));
   document.getElementById("langName").textContent=document.getElementById("lo-"+code).textContent;
   document.getElementById("langBtn").setAttribute("aria-label",t.lang+": "+document.getElementById("lo-"+code).textContent);

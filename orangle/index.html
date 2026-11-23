@@ -338,11 +338,11 @@ function badgeHTML(t){
   return '<img alt="'+t.store+'" src="https://toolbox.marketingtools.apple.com/api/v2/badges/download-on-the-app-store/black/'+t.badge+'" onerror="this.parentNode.classList.add(\'fallback\');this.parentNode.textContent=\''+t.store.replace(/'/g,"\\'")+'\'">';
 }
 /* Google Play badge (official images, cropped to the visible badge so it matches the App Store badge height) */
-const GP_BOX={en:[41,41,604,208]}, GP_DEF=[0,29,645,220];
+const GP_BOX={en:[40,40,605,209]}, GP_DEF=[0,29,645,220];
 function gplayFill(a,t){
   const h=+a.dataset.h||56, l=t.gpl||"en", b=GP_BOX[l]||GP_DEF, k=h/(b[3]-b[1]+1);
   a.className="badge gplay"; a.setAttribute("aria-label",t.gp);
-  a.style.height=h+"px"; a.style.width=Math.round((b[2]-b[0]+1)*k)+"px"; a.textContent="";
+  a.style.height=h+"px"; a.style.width=Math.round((b[2]-b[0]+1)*k)+"px"; a.style.borderRadius=(25*k).toFixed(1)+"px"; a.textContent="";
   const im=new Image(); im.alt=t.gp;
   im.style.cssText="height:"+Math.round(250*k)+"px;left:"+(-b[0]*k).toFixed(1)+"px;top:"+(-b[1]*k).toFixed(1)+"px";
   im.onerror=()=>{a.style.cssText="";a.classList.add("fallback");a.textContent=t.gp;};
